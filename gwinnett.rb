@@ -37,7 +37,8 @@ end
 #removing any records associated with a hold or if it matches these charge strings
 listing.reject! do |list|
   (hold_list_ids.include?("#{list['offender_id']}") || (list["address"] == ",") || (list["charge"].empty?) || list['charge'].include?("VALID") || 
-  list['charge'].include?("OBSCURING LIC") || list['charge'].include?("IMPROPER USE") || list['charge'].include?("RESIDENT") || list['charge'].include?("PLATE TO CONCEAL"))
+  list['charge'].include?("OBSCURING LIC") || list['charge'].include?("IMPROPER USE") || list['charge'].include?("RESIDENT") || list['charge'].include?("PLATE TO CONCEAL") || 
+  list['charge'].include?("SIMPLE BATTERY"))
 end
 
 #remove if you don't have these strings in the charge

@@ -33,6 +33,14 @@ listing.each do |list|
       
     end
 end
+
+#switching names
+
+listing.each do |list|
+  name_array = list['name'].split(',')
+  list['name'] = "#{name_array[1]} #{name_array[0]}"
+end
+
 #create a CSV
 CSV.open("meh.csv", "wb") do |csv|
   csv << ["Title", "First name", "Last Name"] 
