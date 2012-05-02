@@ -45,6 +45,6 @@ end
 CSV.open("meh.csv", "wb") do |csv|
   csv << ["Title", "First name", "Last Name"] 
   listing.each do |list|
-    csv << [list['name'], list['street'],list['city_state']]
+    csv << [list['name'], list['street'].upcase,list['city_state'].gsub(',','').upcase]
   end
 end

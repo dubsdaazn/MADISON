@@ -38,7 +38,7 @@ end
 listing.reject! do |list|
   (hold_list_ids.include?("#{list['offender_id']}") || (list["address"] == ",") || (list["charge"].empty?) || list['charge'].include?("VALID") || 
   list['charge'].include?("OBSCURING LIC") || list['charge'].include?("IMPROPER USE") || list['charge'].include?("RESIDENT") || list['charge'].include?("PLATE TO CONCEAL") || 
-  list['charge'].include?("SIMPLE BATTERY"))
+  list['charge'].include?("SIMPLE BATTERY") || list['charge'].include?("LICENSE ON PERSON"))
 end
 
 #remove if you don't have these strings in the charge
@@ -73,6 +73,6 @@ end
 CSV.open("offenders_list.csv", "wb") do |csv|
   csv << ["Title", "First name", "Last Name"]
   listing.each do |list|
-    csv << ["#{list['first_name']} #{list['last_name']}", list['street'],list['city_state']]
+    csv << ["#{list['first_name']} #{list['last_name']}", list['street'].upcase,list['city_state'].gsub(',','').upcase]
   end
 end
